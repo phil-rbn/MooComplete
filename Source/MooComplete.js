@@ -37,6 +37,14 @@ function MooComplete(element, options) {
     list = l;
   }
 
+  /*
+  * customized by Spark 5 - show dropdown on focus possible
+  * save mooComplete to var and call showDropdown() function
+  */
+  this.showDropdown = function() {
+    showSuggestions(true);
+  }
+
 
   options.size = options.size || 10;
 
