@@ -23,6 +23,7 @@ tag mode and some other minor changes provided by abidibo <abidibo@gmail.com> <h
 // options should be an object and can contain the following members:
 //  - list: Array              the list of elements to autocomplete from
 //  - size: number             the number of elements to suggest
+//  - length: number           the number of characters to start autocomplete
 //  - mode: string             the autocomplete mode (tag or text), default text
 //  - render: function(value)  the function called when rendering an element from the list
 //  - get: function(value)     the function called when testing the value against the input
@@ -47,6 +48,7 @@ function MooComplete(element, options) {
 
 
   options.size = options.size || 10;
+  options.length = options.length || 0;
 
   // tag mode | text mode others in future?
   options.mode = options.mode || 'text';
@@ -121,7 +123,7 @@ function MooComplete(element, options) {
   function showSuggestions() {
     var v = getNeedle();
 
-    if (v.length == 0) {
+    if (v.length < options.length) {
       box.setStyle('display', 'none');
       return;
     }
